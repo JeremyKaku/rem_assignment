@@ -81,6 +81,11 @@ public class UserInterface {
     return outputDir;
   }
 
+  /**
+   * Gets the commission period from the user.
+   *
+   * @return the commission period
+   */
   private String getCommissionPeriod() {
     String commissionPeriod;
     while (true) {
@@ -105,10 +110,10 @@ public class UserInterface {
    * @param inputDir  the input directory
    * @param outputDir the output directory
    */
-  public void process(String inputDir, String outputDir, String commissionPeriod) {
+  private void process(String inputDir, String outputDir, String commissionPeriod) {
     // Parse data concurrently
-    CommissionDataParser parser = new CommissionDataParser(inputDir);
-    List<CommissionRecord> records = parser.parseData();
+    CommissionDataParser parser = new CommissionDataParser();
+    List<CommissionRecord> records = parser.parseData(inputDir);
 
     // Write to CSV
     CsvWriter writer = new CsvWriter(outputDir, records);
@@ -131,7 +136,7 @@ public class UserInterface {
    * @param inputDir input directory
    * @return true if the input directory is valid, false otherwise
    */
-  public static boolean isValidInputDir(String inputDir) {
+  private boolean isValidInputDir(String inputDir) {
     File directory = new File(inputDir);
     File[] files = directory.listFiles();
     if (files != null) {
@@ -146,6 +151,12 @@ public class UserInterface {
     return false;
   }
 
+  /**
+   * Checks if the output directory is valid.
+   *
+   * @param outputDir output directory
+   * @return true if the output directory is valid, false otherwise
+   */
   public static boolean isValidOutputDir(String outputDir) {
     File directory = new File(outputDir);
     return directory.exists() && directory.isDirectory();

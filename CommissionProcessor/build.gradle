@@ -20,6 +20,11 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:2.24.2'
     implementation 'org.apache.logging.log4j:log4j-core:2.24.2'
     implementation 'org.apache.commons:commons-text:1.12.0'
+//    testImplementation 'org.mockito:mockito-core:5.14.2'
+//    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+//    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+//    testImplementation 'org.mockito:mockito-core:3.12.4'
+//    testImplementation 'junit:junit:4.13.2'
 }
 pmd {
     ignoreFailures=true

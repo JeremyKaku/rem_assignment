@@ -51,10 +51,12 @@ public class TopPerformersCalculator {
   /**
    * Displays the top performers.
    *
-   * @param topPerformers the top performers
-   * @param isAgent       true if the entity is an agent, false if the entity is an agency
+   * @param topPerformers    the top performers
+   * @param isAgent          true if the entity is an agent, false if the entity is an agency
+   * @param commissionPeriod the commission period
    */
-  public void displayTopPerformers(List<Map.Entry<String, Double>> topPerformers, boolean isAgent, String commissionPeriod) {
+  public void displayTopPerformers(List<Map.Entry<String, Double>> topPerformers, boolean isAgent,
+      String commissionPeriod) {
     System.out.println(isAgent ? Constants.MSG_TOP_AGENT : Constants.MSG_TOP_AGENCY);
     System.out.println(Constants.MSG_PERIOD + commissionPeriod);
     if (topPerformers.isEmpty()) {
@@ -64,7 +66,8 @@ public class TopPerformersCalculator {
     System.out.println(Constants.MSG_TOP_HERADER);
     int rank = 1;
     for (Map.Entry<String, Double> entry : topPerformers) {
-      System.out.printf("%s , %s, %.2f\n", Constants.RANK_NUM + rank++, entry.getKey(), entry.getValue());
+      System.out.printf("%s , %s, %.2f\n", Constants.RANK_NUM + rank++, entry.getKey(),
+          entry.getValue());
     }
   }
 

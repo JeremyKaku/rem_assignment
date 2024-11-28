@@ -1,6 +1,9 @@
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.apache.poi.ss.usermodel.Row;
 
+/**
+ * Utility class for common methods.
+ */
 public class Utils {
 
   /**
@@ -49,7 +52,7 @@ public class Utils {
   /**
    * Gets the cell value from the row at the specified index.
    *
-   * @param row      the row to get the cell value from
+   * @param row       the row to get the cell value from
    * @param cellIndex the index of the cell
    * @return the cell value
    */
