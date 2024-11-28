@@ -1,5 +1,4 @@
 import java.util.Locale;
-import java.util.Objects;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
@@ -22,23 +21,13 @@ import java.time.YearMonth;
  */
 public class CommissionDataParser {
 
-  private final String directoryPath;
-
   /**
-   * Creates a new CommissionDataParser object.
+   * Parses the commission data from the Excel files in the given directory.
    *
    * @param directoryPath the path to the directory containing the Excel files
-   */
-  public CommissionDataParser(String directoryPath) {
-    this.directoryPath = directoryPath;
-  }
-
-  /**
-   * Parses the commission data from the Excel files in the directory.
-   *
    * @return a list of CommissionRecord objects
    */
-  public List<CommissionRecord> parseData() {
+  public List<CommissionRecord> parseData(String directoryPath) {
     File directory = new File(directoryPath);
     File[] excelFiles = directory.listFiles(
         (dir, name) -> name.endsWith(Constants.EXCEL_EXTENSION_XLSX) || name.endsWith(
@@ -143,16 +132,16 @@ public class CommissionDataParser {
   /**
    * Extracts the agent name from the row based on the file name.
    *
-   * @param row      the row to extract the agent name from
+   * @param row       the row to extract the agent name from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the agent name
    */
   private String getAgentName(Row row, Map<String, Integer> headerMap, String fileName) {
     if (fileName.toLowerCase().contains(Constants.CARRIER_HEALTHFIRST)) {
       String producerType = Utils.getCellValue(row, headerMap.getOrDefault("Producer Type", -1));
       return producerType.equalsIgnoreCase("Agent") || producerType.equalsIgnoreCase("Broker") ?
-          Utils. getCellValue(row, headerMap.getOrDefault("Producer Name", -1)) : null;
+          Utils.getCellValue(row, headerMap.getOrDefault("Producer Name", -1)) : null;
     } else if (fileName.toLowerCase().contains("emblem")) {
       return Utils.getCellValue(row, headerMap.getOrDefault("Rep Name", -1));
     } else if (fileName.toLowerCase().contains("centene")) {
@@ -164,9 +153,9 @@ public class CommissionDataParser {
   /**
    * Extracts the agency name from the row based on the file name.
    *
-   * @param row      the row to extract the agency name from
+   * @param row       the row to extract the agency name from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the agency name
    */
   private String getAgencyName(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -185,9 +174,9 @@ public class CommissionDataParser {
   /**
    * Extracts the commission period from the row based on the file name.
    *
-   * @param row      the row to extract the commission period from
+   * @param row       the row to extract the commission period from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the commission period
    */
   private String getCommissionPeriod(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -204,9 +193,9 @@ public class CommissionDataParser {
   /**
    * Extracts the commission amount from the row based on the file name.
    *
-   * @param row      the row to extract the commission amount from
+   * @param row       the row to extract the commission amount from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the commission amount
    */
   private Double getCommissionAmount(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -224,9 +213,9 @@ public class CommissionDataParser {
   /**
    * Extracts the member name from the row based on the file name.
    *
-   * @param row      the row to extract the member name from
+   * @param row       the row to extract the member name from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the member name
    */
   private String getMemberName(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -245,9 +234,9 @@ public class CommissionDataParser {
   /**
    * Extracts the enrollment type from the row based on the file name.
    *
-   * @param row      the row to extract the enrollment type from
+   * @param row       the row to extract the enrollment type from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the enrollment type
    */
   private String getEnrollmentType(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -262,9 +251,9 @@ public class CommissionDataParser {
   /**
    * Extracts the plan name from the row based on the file name.
    *
-   * @param row      the row to extract the plan name from
+   * @param row       the row to extract the plan name from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the plan name
    */
   private String getPlanName(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -281,9 +270,9 @@ public class CommissionDataParser {
   /**
    * Extracts the effective date from the row based on the file name.
    *
-   * @param row      the row to extract the effective date from
+   * @param row       the row to extract the effective date from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the effective date
    */
   private String getEffectiveDate(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -300,9 +289,9 @@ public class CommissionDataParser {
   /**
    * Extracts the term date from the row based on the file name.
    *
-   * @param row      the row to extract the term date from
+   * @param row       the row to extract the term date from
    * @param headerMap the map of headers to column indices
-   * @param fileName the name of the file
+   * @param fileName  the name of the file
    * @return the term date
    */
   private String getTermDate(Row row, Map<String, Integer> headerMap, String fileName) {
@@ -395,7 +384,8 @@ public class CommissionDataParser {
   }
 
   /**
-   * Updates the middle names of the agent and member names in the list of CommissionRecord objects.
+   * Updates the middle names of the agent and member names in the list of CommissionRecord
+   * objects.
    *
    * @param records the list of CommissionRecord objects
    */
@@ -500,29 +490,5 @@ public class CommissionDataParser {
    */
   private String generateKey(String firstName, String lastName) {
     return firstName.toLowerCase() + "_" + lastName.toLowerCase();
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    CommissionDataParser that = (CommissionDataParser) o;
-    return Objects.equals(directoryPath, that.directoryPath);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hashCode(directoryPath);
-  }
-
-  @Override
-  public String toString() {
-    return "CommissionDataParser{" +
-        "directoryPath='" + directoryPath + '\'' +
-        '}';
   }
 }

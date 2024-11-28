@@ -25,6 +25,8 @@ public class Name {
 
   /**
    * Gets the first name.
+   *
+   * @return The first name
    */
   public String getFirstName() {
     return firstName;
@@ -32,6 +34,8 @@ public class Name {
 
   /**
    * Gets the middle name.
+   *
+   * @return The middle name
    */
   public String getMiddleName() {
     return middleName;
@@ -48,6 +52,8 @@ public class Name {
 
   /**
    * Gets the last name.
+   *
+   * @return The last name
    */
   public String getLastName() {
     return lastName;
@@ -55,11 +61,10 @@ public class Name {
 
 
   /**
-   * Parses a full name string and returns a Name object.
-   * Handles formats like "<First Name> <Last Name>" or "<Last Name>, <First Name>".
+   * Parses a full name into a Name object.
    *
-   * @param fullName The full name string
-   * @return A normalized Name object
+   * @param fullName The full name
+   * @return The Name object
    */
   public static Name parse(String fullName) {
 
@@ -89,7 +94,9 @@ public class Name {
 
       String firstName = parts[0];
       String lastName = parts[parts.length - 1];
-      String middleName = parts.length > 2 ? String.join(" ", Arrays.copyOfRange(parts, 1, parts.length - 1)) : null;
+      String middleName =
+          parts.length > 2 ? String.join(" ", Arrays.copyOfRange(parts, 1, parts.length - 1))
+              : null;
       return new Name(firstName, middleName, lastName);
     }
   }

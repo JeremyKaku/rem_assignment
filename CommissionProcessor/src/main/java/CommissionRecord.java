@@ -1,16 +1,18 @@
 import java.util.Objects;
 
 /**
- * @param agentName
- * @param agencyName
- * @param carrierName
- * @param commissionPeriod
- * @param commissionAmount
- * @param memberName
- * @param enrollmentType
- * @param planName
- * @param effectiveDate
- * @param termDate
+ * Represents a commission record.
+ *
+ * @param agentName        agent name
+ * @param agencyName       agency name
+ * @param carrierName      carrier name
+ * @param commissionPeriod commission period
+ * @param commissionAmount commission amount
+ * @param memberName       member name
+ * @param enrollmentType   enrollment type
+ * @param planName         plan name
+ * @param effectiveDate    effective date
+ * @param termDate         term date
  */
 public record CommissionRecord(
     // Agent Name
