@@ -38,8 +38,10 @@ public final class Constants {
   public static final String MSG_COMMISSION_PERIOD = "Please enter the commission period (MM/YYYY): (Press Enter to use the default period) \n";
   public static  final  String MSG_TOP_AGENT ="Top 10 Agents:\n";
   public static  final  String MSG_TOP_AGENCY ="Top 10 Agencies:\n";
-  public static final String MSG_TOP_HERADER = "Rank, Name, Commission Amount";
-  public static final String MSG_NO_TOP_PERFORMERS = "No top performers found.\n";
+  public static final String MSG_TOP_HERADER = "\nRank, Name, Commission Amount";
+  public static final String MSG_NO_TOP_PERFORMERS = "No top performers found.";
+  public static final String MSG_PERIOD= "Commission Period: ";
+
 
   //Default values
   public static final String DEFAULT_COMMISSION_PERIOD = "06/2024";

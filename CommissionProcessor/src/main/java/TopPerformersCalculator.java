@@ -54,8 +54,9 @@ public class TopPerformersCalculator {
    * @param topPerformers the top performers
    * @param isAgent       true if the entity is an agent, false if the entity is an agency
    */
-  public void displayTopPerformers(List<Map.Entry<String, Double>> topPerformers, boolean isAgent) {
+  public void displayTopPerformers(List<Map.Entry<String, Double>> topPerformers, boolean isAgent, String commissionPeriod) {
     System.out.println(isAgent ? Constants.MSG_TOP_AGENT : Constants.MSG_TOP_AGENCY);
+    System.out.println(Constants.MSG_PERIOD + commissionPeriod);
     if (topPerformers.isEmpty()) {
       System.out.println(Constants.MSG_NO_TOP_PERFORMERS);
       return;
