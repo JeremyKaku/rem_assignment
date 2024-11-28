@@ -120,7 +120,7 @@ public class UserInterface {
         true, commissionPeriod);
 
     // Display results
-    calculator.displayTopPerformers(agentRankList, true);
+    calculator.displayTopPerformers(agentRankList, true, commissionPeriod);
 
     scanner.close();
   }
