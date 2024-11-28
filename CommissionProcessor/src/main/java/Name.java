@@ -1,12 +1,58 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
- * A record class to represent a name with first, middle, and last name.
- * @param firstName
- * @param middleName
- * @param lastName
+ * Represents a person's name.
  */
-public record Name(String firstName, String middleName, String lastName) {
+public class Name {
+
+  private final String firstName;
+  private String middleName;
+  private final String lastName;
+
+  /**
+   * Constructor for Name.
+   *
+   * @param firstName  The first name
+   * @param middleName The middle name
+   * @param lastName   The last name
+   */
+  public Name(String firstName, String middleName, String lastName) {
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+  }
+
+  /**
+   * Gets the first name.
+   */
+  public String getFirstName() {
+    return firstName;
+  }
+
+  /**
+   * Gets the middle name.
+   */
+  public String getMiddleName() {
+    return middleName;
+  }
+
+  /**
+   * Sets the middle name.
+   *
+   * @param middleName The middle name
+   */
+  public void setMiddleName(String middleName) {
+    this.middleName = middleName;
+  }
+
+  /**
+   * Gets the last name.
+   */
+  public String getLastName() {
+    return lastName;
+  }
+
 
   /**
    * Parses a full name string and returns a Name object.
@@ -16,14 +62,10 @@ public record Name(String firstName, String middleName, String lastName) {
    * @return A normalized Name object
    */
   public static Name parse(String fullName) {
-//    if (fullName == null || fullName.isBlank()) {
-//      throw new IllegalArgumentException("Full name cannot be null or blank");
-//    }
 
     if (fullName == null || fullName.isBlank()) {
       return null;
     }
-
 
     fullName = fullName.trim();
     String[] parts;
@@ -52,13 +94,22 @@ public record Name(String firstName, String middleName, String lastName) {
     }
   }
 
-  /**
-   * Normalizes the Name by removing middle names/initials for comparison purposes.
-   *
-   * @return A normalized version of the Name
-   */
-  public Name normalize() {
-    return new Name(this.firstName, null, this.lastName);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Name name = (Name) o;
+    return Objects.equals(firstName, name.firstName) && Objects.equals(middleName,
+        name.middleName) && Objects.equals(lastName, name.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstName, middleName, lastName);
   }
 
   @Override

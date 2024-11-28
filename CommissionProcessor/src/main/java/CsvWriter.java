@@ -1,14 +1,22 @@
-import org.etsi.uri.x01903.v13.CertIDListType;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * Writes the data to a CSV file.
+ */
 public class CsvWriter implements Writable {
 
   private final String outputCsvPath;
   private final List<CommissionRecord> records;
 
+  /**
+   * Constructs a CsvWriter object.
+   *
+   * @param outputCsvPath The output CSV file path
+   * @param records       The list of CommissionRecord objects
+   */
   public CsvWriter(String outputCsvPath, List<CommissionRecord> records) {
     this.outputCsvPath = outputCsvPath;
     this.records = records;
@@ -26,25 +34,27 @@ public class CsvWriter implements Writable {
 
       // Write records
       for (CommissionRecord record : records) {
-        writer.append(formatValue(record.agentName() != null ? record.agentName().toString() : ""))
+        writer.append(
+                Utils.formatValue(record.agentName() != null ? record.agentName().toString() : ""))
             .append(',')
-            .append(formatValue(record.agencyName()))
+            .append(Utils.formatValue(record.agencyName()))
             .append(',')
-            .append(formatValue(record.carrierName()))
+            .append(Utils.formatValue(record.carrierName()))
             .append(',')
-            .append(formatValue(record.commissionPeriod()))
+            .append(Utils.formatValue(record.commissionPeriod()))
             .append(',')
-            .append(formatValue(String.valueOf(record.commissionAmount())))
+            .append(Utils.formatValue(String.valueOf(record.commissionAmount())))
             .append(',')
-            .append(formatValue(record.memberName() != null ? record.memberName().toString() : ""))
+            .append(Utils.formatValue(
+                record.memberName() != null ? record.memberName().toString() : ""))
             .append(',')
-            .append(formatValue(record.enrollmentType()))
+            .append(Utils.formatValue(record.enrollmentType()))
             .append(',')
-            .append(formatValue(record.planName()))
+            .append(Utils.formatValue(record.planName()))
             .append(',')
-            .append(formatValue(record.effectiveDate()))
+            .append(Utils.formatValue(record.effectiveDate()))
             .append(',')
-            .append(formatValue(record.termDate()))
+            .append(Utils.formatValue(record.termDate()))
             .append("\n");
       }
     } catch (IOException e) {
@@ -52,17 +62,29 @@ public class CsvWriter implements Writable {
     }
   }
 
-  private String formatValue(String value) {
-    if (value == null) {
-      return "";
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-    // Escape double quotes and wrap the value in quotes if it contains special characters
-    String escapedValue = value.replace("\"", "\"\"");
-    if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
-      return '"' + escapedValue + '"';
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
-    return escapedValue;
+    CsvWriter csvWriter = (CsvWriter) o;
+    return Objects.equals(outputCsvPath, csvWriter.outputCsvPath)
+        && Objects.equals(records, csvWriter.records);
   }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(outputCsvPath, records);
+  }
 
+  @Override
+  public String toString() {
+    return "CsvWriter{" +
+        "outputCsvPath='" + outputCsvPath + '\'' +
+        ", records=" + records +
+        '}';
+  }
 }
