@@ -56,6 +56,10 @@ public class TopPerformersCalculator {
    */
   public void displayTopPerformers(List<Map.Entry<String, Double>> topPerformers, boolean isAgent) {
     System.out.println(isAgent ? Constants.MSG_TOP_AGENT : Constants.MSG_TOP_AGENCY);
+    if (topPerformers.isEmpty()) {
+      System.out.println(Constants.MSG_NO_TOP_PERFORMERS);
+      return;
+    }
     System.out.println(Constants.MSG_TOP_HERADER);
     int rank = 1;
     for (Map.Entry<String, Double> entry : topPerformers) {

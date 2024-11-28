@@ -39,6 +39,7 @@ public final class Constants {
   public static  final  String MSG_TOP_AGENT ="Top 10 Agents:\n";
   public static  final  String MSG_TOP_AGENCY ="Top 10 Agencies:\n";
   public static final String MSG_TOP_HERADER = "Rank, Name, Commission Amount";
+  public static final String MSG_NO_TOP_PERFORMERS = "No top performers found.\n";
 
   //Default values
   public static final String DEFAULT_COMMISSION_PERIOD = "06/2024";
