@@ -119,6 +119,8 @@ public class UserInterface {
     Writable writer = new CsvWriter(outputDir, records);
     writer.write();
 
+    System.out.println(Constants.MSG_CSV_DOWNLOADED);
+
     // Calculate top performers
     TopPerformersCalculator calculator = new TopPerformersCalculator();
     List<Map.Entry<String, Double>> agentRankList = calculator.getTopPerformersByEntity(records,
