@@ -114,19 +114,22 @@ public final class Constants {
    * The message displayed top 10 agencies.
    */
   public static final String MSG_TOP_AGENCY = "Top 10 Agencies:\n";
- /**
+  /**
    * The message displayed Header for the top performers.
    */
   public static final String MSG_TOP_HERADER = "\nRank, Name, Commission Amount";
   /**
-   *  The message displayed when no top performers are found.
+   * The message displayed when no top performers are found.
    */
   public static final String MSG_NO_TOP_PERFORMERS = "No top performers found.";
   /**
    * The date format used in the application.
    */
   public static final String MSG_PERIOD = "Commission Period: ";
-
+  /**
+   * The message displayed when the CSV file is downloaded.
+   */
+  public static final String MSG_CSV_DOWNLOADED = "CSV file downloaded successfully!\n";
 
   //Default values
   /**

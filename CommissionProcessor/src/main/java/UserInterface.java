@@ -116,8 +116,10 @@ public class UserInterface {
     List<CommissionRecord> records = parser.parseData(inputDir);
 
     // Write to CSV
-    CsvWriter writer = new CsvWriter(outputDir, records);
+    Writable writer = new CsvWriter(outputDir, records);
     writer.write();
+
+    System.out.println(Constants.MSG_CSV_DOWNLOADED);
 
     // Calculate top performers
     TopPerformersCalculator calculator = new TopPerformersCalculator();
